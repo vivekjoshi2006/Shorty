@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { redis } from '../redis'; // Import our new type-safe Redis client
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ code: string }> }
@@ -7,8 +8,7 @@ export async function GET(
   const { code } = await params;
 
   try {
-    // Fetch the original long URL from Vercel KV using the short code
-    const originalUrl = await kv.get<string>(code);
+    const originalUrl = await redis.get(code);
 
     if (!originalUrl) {
       return NextResponse.redirect(new URL('/?error=not-found', request.url));

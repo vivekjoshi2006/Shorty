@@ -9,13 +9,9 @@ export default function Home() {
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
   
-  // Modal toggle state
   const [showModal, setShowModal] = useState(false);
-
-  // Strictly typed input reference
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Safely check query params using globalThis
   useEffect(() => {
     if (typeof globalThis !== 'undefined') {
       const g = globalThis as any;
@@ -28,7 +24,6 @@ export default function Home() {
     }
   }, []);
 
-  // Automatically focus on input when the modal mounts
   useEffect(() => {
     if (showModal) {
       const timer = setTimeout(() => {

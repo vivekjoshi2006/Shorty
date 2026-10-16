@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { redis } from '../redis'; // Import our new type-safe Redis client
+import { redis } from '../redis';
 
 export async function GET(
   request: NextRequest,
